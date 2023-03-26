@@ -31,6 +31,7 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
+
     {
         $category = new Category;
         $data = [
@@ -48,7 +49,6 @@ class CategoryController extends Controller
      */
     public function show(Category $category, $id)
     {
-        //$category = //DB::select('select * from categories where id = ?', [$id]);
         $show = $category->find($id);
         $category = $show->first();
         return view('categories.show')->with(['category' => $category]);
@@ -83,6 +83,19 @@ class CategoryController extends Controller
     public function destroy(Category $category, $id)
     {
         $category->destroy($id);
+        return redirect()->route('categories');
+    }
+
+    public function multipledelete(Category $category, Request $request)
+    {
+        if ($request->ids) {
+            foreach ($request->ids as $id => $value) {
+                if ($value) {
+                    $category->destroy($id);
+                }
+            }
+        }
+
         return redirect()->route('categories');
     }
 }

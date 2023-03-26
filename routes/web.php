@@ -23,3 +23,4 @@ Route::get('categories/delete/{id}', [App\Http\Controllers\CategoryController::c
 Route::get('categories/view/{id}', [App\Http\Controllers\CategoryController::class, 'show'])->name('view-category');
 Route::get('categories/edit/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->name('edit-category');
 Route::post('categories/update/{id}', [App\Http\Controllers\CategoryController::class, 'update'])->name('update-category');
+Route::post('categories/multiple-delete', [App\Http\Controllers\CategoryController::class, 'multipledelete'])->name('multiple-delete');
